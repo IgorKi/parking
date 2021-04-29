@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Parking Space</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<!--/*@thymesVar id="parkingSpace" type="com.igorkiv.parking.model.ParkingSpace"*/-->
+    <h1>Parking place</h1>
+    <h2 th:text="${parkingInformation}"></h2>
+
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+                        <h1 class="panel-title" th:text="'Number of free parking spaces ' + ${freeSpaces}">Parking places</h1>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive" th:if="${not #lists.isEmpty(parkingSpaces)}">
+                            <table class="table table-hover">
+                                <thead class="thead-inverse">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Number</th>
+                                    <th>Sector</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <!--                                <tr th:remove="all">-->
+                                <!--                                    <td th:text="${recipe?.id}">id</td>-->
+                                <!--                                    <td th:text="${recipe?.description}">description</td>-->
+                                <!--                                </tr>-->
+                                <tbody>
+                                <tr th:each="parkingSpace : ${parkingSpaces}">
+                                    <td th:text="${parkingSpace?.id}">id</td>
+                                    <td th:text="${parkingSpace?.number}">number</td>
+                                    <td th:text="${parkingSpace?.sector}">sector</td>
+                                    <td th:text="${parkingSpace?.status}">status</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+</body>
+</html>
